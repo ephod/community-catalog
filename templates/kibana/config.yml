@@ -1,4 +1,4 @@
 name: "Kibana"
 description: "Visualization dashboard"
-version: "6.2.3-rancher1"
-category: ELK
+version: "6.6.1-rancher1"
+category: ELS
