@@ -61,3 +61,13 @@ apm-server:
   external_links:
     - ${elasticsearch_source}:elasticsearch
   command: apm-server -e -d "*" -E apm-server.host="0.0.0.0:8200" -E apm-server.expvar.enabled=true -E apm-server.frontend.enabled=true -E apm-server.frontend.rate_limit=10 -E apm-server.frontend.allow_origins=['*'] -E apm-server.frontend.library_pattern="node_modules|bower_components|~" -E apm-server.frontend.exclude_from_grouping="^/webpack" -E apm-server.frontend.source_mapping.cache.expiration=5m -E apm-server.frontend.source_mapping.index_pattern="apm-*-sourcemap*" -E apm-server.rum.enabled=true -E apm-server.rum.rate_limit=10 -E apm-server.rum.allow_origins=['*'] -E apm-server.rum.library_pattern="node_modules|bower_components|~" -E apm-server.rum.exclude_from_grouping="^/webpack" -E apm-server.rum.source_mapping.cache.expiration=5m -E apm-server.rum.source_mapping.index_pattern="apm-*-sourcemap*"
+metricbeat:
+  restart: always
+  tty: true
+  image: docker.elastic.co/beats/metricbeat:6.6.1
+  stdin_open: true
+  labels:
+    io.rancher.container.hostname_override: container_name
+  external_links:
+    - ${elasticsearch_source}:elasticsearch
+  command: metricbeat -e -E setup.kibana.host=kibana:5601 -E output.elasticsearch.hosts=["elasticsearch:9200"]
