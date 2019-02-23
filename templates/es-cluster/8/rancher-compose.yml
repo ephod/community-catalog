@@ -24,6 +24,17 @@ catalog:
             - false
             - true
 
+        - variable: "EXPOSE_PORTS"
+          label: "Expose Elasticsearch ports:"
+          description: |
+            Set true to expose the following ports 9200 and 9300.
+          default: false
+          required: false
+          type: enum
+          options:
+            - false
+            - true
+
         - variable: "master_heap_size"
           type: "string"
           required: true

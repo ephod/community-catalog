@@ -16,6 +16,11 @@ services:
             - "discovery.zen.minimum_master_nodes=${minimum_master_nodes}"
             - "node.master=true"
             - "node.data=false"
+        {{- if eq .Values.EXPOSE_PORTS "true" }}
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        {{- end}}
         ulimits:
             memlock:
                 soft: -1
@@ -57,6 +62,11 @@ services:
             - "ES_JAVA_OPTS=-Xms${data_heap_size} -Xmx${data_heap_size}"
             - "node.master=false"
             - "node.data=true"
+        {{- if eq .Values.EXPOSE_PORTS "true" }}
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        {{- end}}
         ulimits:
             memlock:
                 soft: -1
@@ -100,6 +110,11 @@ services:
             - "ES_JAVA_OPTS=-Xms${client_heap_size} -Xmx${client_heap_size}"
             - "node.master=false"
             - "node.data=false"
+        {{- if eq .Values.EXPOSE_PORTS "true" }}
+        ports:
+            - "9200:9200"
+            - "9300:9300"
+        {{- end}}
         ulimits:
             memlock:
                 soft: -1
