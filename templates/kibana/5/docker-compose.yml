@@ -29,7 +29,7 @@ kibana6:
   stdin_open: true
   environment:
     - "xpack.monitoring.collection.enabled=true"
-    - "ELASTICSEARCH_URL=http://${elasticsearch_source}:9200"
+    - "ELASTICSEARCH_URL=http://elasticsearch:9200"
   # healthcheck:
   #   test: ['CMD', 'curl', '-f', 'http://localhost:5601']
   #   interval: 10s
@@ -37,6 +37,8 @@ kibana6:
   #   retries: 3
   labels:
     io.rancher.container.hostname_override: container_name
+  external_links:
+    - ${elasticsearch_source}:elasticsearch
 apm-server:
   restart: always
   tty: true
@@ -45,7 +47,7 @@ apm-server:
   ports:
     - 8200:8200
   environment:
-    - output.elasticsearch.hosts=["http://${elasticsearch_source}:9200"]
+    - output.elasticsearch.hosts=["http://elasticsearch:9200"]
     - apm-server.host="0.0.0.0:8200"
     - apm-server.secret_token="xxVpmQB2HMzCL9PgBHVrnxjNXXw5J7bd79DFm6sjBJR5HPXDhcF8MSb3vv4bpg44"
     - setup.kibana.host="kibana:5601"
@@ -70,3 +72,5 @@ apm-server:
   #     condition: service_healthy
   labels:
     io.rancher.container.hostname_override: container_name
+  external_links:
+    - ${elasticsearch_source}:elasticsearch
