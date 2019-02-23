@@ -27,6 +27,11 @@ services:
         mem_swappiness: 0
         cap_add:
             - IPC_LOCK
+        healthcheck:
+            test: ['CMD', 'curl', '-f', 'http://localhost:9200']
+            interval: 10s
+            timeout: 5s
+            retries: 3
         volumes_from:
             - es-master-storage
 
@@ -68,6 +73,11 @@ services:
         mem_swappiness: 0
         cap_add:
             - IPC_LOCK
+        healthcheck:
+            test: ['CMD', 'curl', '-f', 'http://localhost:9200']
+            interval: 10s
+            timeout: 5s
+            retries: 3
         volumes_from:
             - es-data-storage
         depends_on:
@@ -116,6 +126,11 @@ services:
         mem_swappiness: 0
         cap_add:
             - IPC_LOCK
+        healthcheck:
+            test: ['CMD', 'curl', '-f', 'http://localhost:9200']
+            interval: 10s
+            timeout: 5s
+            retries: 3
         volumes_from:
             - es-client-storage
         depends_on:
