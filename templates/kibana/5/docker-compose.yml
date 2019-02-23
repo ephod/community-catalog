@@ -51,6 +51,13 @@ apm-server:
     - setup.kibana.host="kibana:5601"
     - setup.template.enabled=true
     - logging.to_files=false
+    - apm-server.frontend.enabled=true
+    - apm-server.frontend.rate_limit=10
+    - apm-server.frontend.allow_origins=['*']
+    - apm-server.frontend.library_pattern="node_modules|bower_components|~"
+    - apm-server.frontend.exclude_from_grouping="^/webpack"
+    - apm-server.frontend.source_mapping.cache.expiration=5m
+    - apm-server.frontend.source_mapping.index_pattern="apm-*-sourcemap*"
   # depends_on:
   #   kibana6:
   #     condition: service_healthy
