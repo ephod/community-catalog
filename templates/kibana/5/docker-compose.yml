@@ -30,11 +30,11 @@ kibana6:
   environment:
     - "xpack.monitoring.collection.enabled=true"
     - "ELASTICSEARCH_URL=http://elasticsearch:9200"
-  healthcheck:
-    test: ['CMD', 'curl', '-f', 'http://localhost:5601']
-    interval: 10s
-    timeout: 5s
-    retries: 3
+  # healthcheck:
+  #   test: ['CMD', 'curl', '-f', 'http://localhost:5601']
+  #   interval: 10s
+  #   timeout: 5s
+  #   retries: 3
   labels:
     io.rancher.container.hostname_override: container_name
 apm-server:
@@ -51,8 +51,8 @@ apm-server:
     - setup.kibana.host="kibana:5601"
     - setup.template.enabled=true
     - logging.to_files=false
-  depends_on:
-    kibana6:
-      condition: service_healthy
+  # depends_on:
+  #   kibana6:
+  #     condition: service_healthy
   labels:
     io.rancher.container.hostname_override: container_name
