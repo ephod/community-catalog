@@ -28,6 +28,7 @@ kibana6:
   net: "container:nginx-proxy"
   stdin_open: true
   environment:
-    ELASTICSEARCH_URL: "http://elasticsearch:9200"
+    - "xpack.monitoring.collection.enabled=true"
+    - "ELASTICSEARCH_URL=http://elasticsearch:9200"
   labels:
     io.rancher.container.hostname_override: container_name
