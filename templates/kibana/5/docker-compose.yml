@@ -53,20 +53,6 @@ apm-server:
     - setup.kibana.host="kibana:5601"
     - setup.template.enabled=true
     - logging.to_files=false
-    - apm-server.frontend.enabled=true
-    - apm-server.frontend.rate_limit=10
-    - apm-server.frontend.allow_origins=['*']
-    - apm-server.frontend.library_pattern="node_modules|bower_components|~"
-    - apm-server.frontend.exclude_from_grouping="^/webpack"
-    - apm-server.frontend.source_mapping.cache.expiration=5m
-    - apm-server.frontend.source_mapping.index_pattern="apm-*-sourcemap*"
-    - apm-server.rum.enabled=true
-    - apm-server.rum.rate_limit=10
-    - apm-server.rum.allow_origins=['*']
-    - apm-server.rum.library_pattern="node_modules|bower_components|~"
-    - apm-server.rum.exclude_from_grouping="^/webpack"
-    - apm-server.rum.source_mapping.cache.expiration=5m
-    - apm-server.rum.source_mapping.index_pattern="apm-*-sourcemap*"
   # depends_on:
   #   kibana6:
   #     condition: service_healthy
@@ -74,3 +60,4 @@ apm-server:
     io.rancher.container.hostname_override: container_name
   external_links:
     - ${elasticsearch_source}:elasticsearch
+  command: apm-server -e -d "*" -E apm-server.host="0.0.0.0:8200" -E apm-server.expvar.enabled=true -E apm-server.frontend.enabled=true -E apm-server.frontend.rate_limit=10 -E apm-server.frontend.allow_origins=['*'] -E apm-server.frontend.library_pattern="node_modules|bower_components|~" -E apm-server.frontend.exclude_from_grouping="^/webpack" -E apm-server.frontend.source_mapping.cache.expiration=5m -E apm-server.frontend.source_mapping.index_pattern="apm-*-sourcemap*" -E apm-server.rum.enabled=true -E apm-server.rum.rate_limit=10 -E apm-server.rum.allow_origins=['*'] -E apm-server.rum.library_pattern="node_modules|bower_components|~" -E apm-server.rum.exclude_from_grouping="^/webpack" -E apm-server.rum.source_mapping.cache.expiration=5m -E apm-server.rum.source_mapping.index_pattern="apm-*-sourcemap*"
