@@ -12,6 +12,17 @@ catalog:
           description: "Name of the Elasticsearch Cluster"
           default: "es-cluster"
 
+        - variable: "EXPOSE_PORTS"
+          label: "Expose Elasticsearch ports:"
+          description: |
+            Set true to expose the following ports 9200 and 9300.
+          default: false
+          required: false
+          type: enum
+          options:
+            - false
+            - true
+
         - variable: "UPDATE_SYSCTL"
           label: "Update host sysctl:"
           description: |
@@ -19,17 +30,6 @@ catalog:
             WARN: If set true, host param vm.max_map_count will be update to 262144.
           default: false
           required: true
-          type: enum
-          options:
-            - false
-            - true
-
-        - variable: "EXPOSE_PORTS"
-          label: "Expose Elasticsearch ports:"
-          description: |
-            Set true to expose the following ports 9200 and 9300.
-          default: false
-          required: false
           type: enum
           options:
             - false
