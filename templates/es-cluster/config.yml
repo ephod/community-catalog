@@ -1,5 +1,5 @@
-name: Elasticsearch Cluster 6.6.1
+name: Elasticsearch Cluster 7.0.1
 description: |
   Elasticsearch, you know for search!
-version: 6.6.1-rancher1
+version: 7.0.1-rancher1
 category: ELS
