@@ -28,7 +28,7 @@ catalog:
           description: |
             Set true to avoid vm.max_map_count errors.
             WARN: If set true, host param vm.max_map_count will be update to 262144.
-          default: false
+          default: true
           required: true
           type: enum
           options:
@@ -54,14 +54,14 @@ catalog:
           required: true
           label: "Heap size (data nodes)"
           description: "Heap size to be allocated for Java (data nodes)"
-          default: "512m"
+          default: "1g"
 
         - variable: "data_mem_limit"
           type: "int"
           required: true
           label: "Memory limit in byte (data nodes)"
           description: "Memory limit in Byte per elasticsearch container. AT LEAST double the heap size! (data nodes)"
-          default: 1073741824
+          default: 2147483648
 
         - variable: "client_heap_size"
           type: "string"
@@ -89,7 +89,7 @@ catalog:
           required: true
           label: "# of initial data nodes"
           description: "Set the initial number of data nodes"
-          default: 2
+          default: 3
 
         - variable: "initial_client_nodes"
           type: "int"
