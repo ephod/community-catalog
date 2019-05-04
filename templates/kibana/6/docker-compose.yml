@@ -28,7 +28,6 @@ kibana7:
   net: "container:nginx-proxy"
   stdin_open: true
   environment:
-    - "xpack.monitoring.collection.enabled=true"
     - "ELASTICSEARCH_URL=http://elasticsearch:9200"
   # healthcheck:
   #   test: ['CMD', 'curl', '-f', 'http://localhost:5601']
