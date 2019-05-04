@@ -11,7 +11,7 @@ services:
             - "node.name=$${HOSTNAME}"
             - "bootstrap.memory_lock=true"
             - "ES_JAVA_OPTS=-Xms${master_heap_size} -Xmx${master_heap_size}"
-            - "cluster.initial_master_nodes=${cluster_name}"
+            - "cluster.initial_master_nodes=es-cluster-es-master-1,es-cluster-es-master-2,es-cluster-es-master-3"
             - "node.master=true"
             - "node.data=false"
         ulimits:
