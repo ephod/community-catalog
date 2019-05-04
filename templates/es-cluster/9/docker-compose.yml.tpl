@@ -11,8 +11,7 @@ services:
             - "node.name=$${HOSTNAME}"
             - "bootstrap.memory_lock=true"
             - "ES_JAVA_OPTS=-Xms${master_heap_size} -Xmx${master_heap_size}"
-            - "discovery.seed_hosts=es-master"
-            - "discovery.zen.minimum_master_nodes=${minimum_master_nodes}"
+            - cluster.initial_master_nodes= {{- range $i, $e := untilStep 0 .Values.minimum_master_nodes 1 -}}{{ $cluster_name }}-{{ $i }},{{- end -}}
             - "node.master=true"
             - "node.data=false"
         ulimits:
