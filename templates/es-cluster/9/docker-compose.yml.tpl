@@ -11,7 +11,7 @@ services:
             - "node.name=$${HOSTNAME}"
             - "bootstrap.memory_lock=true"
             - "ES_JAVA_OPTS=-Xms${master_heap_size} -Xmx${master_heap_size}"
-            - cluster.initial_master_nodes= {{- range $i, $e := untilStep 0 .Values.minimum_master_nodes 1 -}}{{ .Values.cluster_name }}-{{ $i }},{{- end -}}
+            - cluster.initial_master_nodes= {{- range $i, $e := untilStep 0 .Values.minimum_master_nodes 1 }}{{.Values.cluster_name}}-{{$i}},{{- end}}
             - "node.master=true"
             - "node.data=false"
         ulimits:
